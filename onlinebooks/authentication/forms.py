@@ -48,3 +48,12 @@ class SignUpForm(UserCreationForm):
     class Meta:
         model = User
         fields = ('first_name', 'last_name', 'email', 'username', 'password1', 'password2')
+
+    def __init__(self, *args, **kwargs):
+        super(UserCreationForm,self).__init__(*args, **kwargs)
+        self.fields['username'].widget.attrs.pop('autofocus', None)
+        self.fields['first_name'].widget.attrs.update({
+            'autofocus': True,
+            'required': True});
+        self.fields['last_name'].widget.attrs.update({'required': True})  
+        self.fields['email'].widget.attrs.update({'required': True})      
