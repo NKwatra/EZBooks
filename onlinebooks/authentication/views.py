@@ -9,21 +9,23 @@ def auth(request):
 def sign_up(request):
     form = SignUpForm(request.POST)
     if form.is_valid():
-        user = form.save()
+        user = form.save(commit=False)
+        user.username = user.email
+        user.save()
         user.refresh_from_db()
         user.customer.address = form.cleaned_data.get('address')
         user.customer.mobile_no = form.cleaned_data.get('mobile_no').replace(' ', '')
         user.save()
         raw_password = form.cleaned_data.get('password1')
-        user = authenticate(username=user.username, password=raw_password)
+        user = authenticate(username=user.email, password=raw_password)
         sign_in(request, user)
         return redirect('authenticate:authenticate')
     return render(request, 'authenticate/auth.html', {'form': form})   
 
 def login(request):
-    username = request.POST['username']
+    email = request.POST['email']
     password = request.POST['password']
-    user = authenticate(request, username=username, password=password)
+    user = authenticate(request, username=email, password=password)
     if user is not None:
         sign_in(request, user)
         return redirect('authenticate:authenticate')

@@ -17,7 +17,7 @@ class Customer(models.Model):
     mobile_no = models.CharField(max_length=15, null=True)
 
     def __str__(self):
-        return self.user.username
+        return self.user.email
 
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
