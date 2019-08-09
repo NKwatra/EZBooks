@@ -12,7 +12,7 @@ app_name = 'Customer'
 #   mobile_nos: mobile number of the user
 class Customer(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    profile_pic = models.ImageField(upload_to="images/")
+    profile_pic = models.ImageField(upload_to="images/users/")
     address = models.TextField()
     mobile_no = models.CharField(max_length=15, null=True)
 
