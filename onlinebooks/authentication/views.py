@@ -21,7 +21,7 @@ def sign_up(request):
         user = authenticate(username=user.email, password=raw_password)
         sign_in(request, user)
         return redirect(reverse('authenticate:authenticate'))
-    return render(request, 'authenticate/auth.html', {'form': form, 'active_tab': 'sign-up'})   
+    return render(request, 'authenticate/auth.html', {'form': form, 'active_tab': 'signup'})   
 
 def login(request):
     email = request.POST['email']
