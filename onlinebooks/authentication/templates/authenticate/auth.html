@@ -1,42 +1,85 @@
-{% extends 'base.html' %}
-  {% block content %}
-  {% load staticfiles %}
-    <h2>Sign Up</h2>
-    <form method="POST" action="{% url 'authenticate:sign_up' %}">
+{% extends 'base.html' %} {% load staticfiles %} {% block stylesheets %}
+<link rel="stylesheet" type="text/css" href="{% static 'authentication/authenticate.css' %}"> {% endblock stylesheets %}
+{% block content %}
+<div class="custom-container">
+  <nav>
+    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+      <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#signup" role="tab" aria-controls="nav-home"
+        aria-selected="true">SIGN UP</a>
+      <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#login" role="tab" aria-controls="nav-profile"
+        aria-selected="false">LOGIN</a>
+    </div>
+  </nav>
+  <div class="tab-content" id="nav-tabContent">
+    <div class="tab-pane fade show active" id="signup" role="tabpanel" aria-labelledby="nav-home-tab">
+      <form method="POST" action="{% url 'authenticate:sign_up' %}" class="pane-top">
         {% csrf_token %}
-        {% for field in form %}
-          <p>
-            {{ field.label_tag }}<br>
-            {{ field }}
-            {% if field.help_text %}
-              <small style="color: grey">{{ field.help_text }}</small>
-            {% endif %}
-            {% for error in field.errors %}
-              <p style="color: red">{{ error }}</p>
+        <div class="row form-group">
+          <div class="col-md-6 mb-4 mb-md-0">
+            {{form.first_name}}
+          </div>
+          <div class="col-md-6">
+            {{form.last_name}}
+          </div>
+        </div>
+        <div class="row form-group">
+          <div class="col">
+            {{form.email}}
+          </div>
+        </div>
+        <div class="row form-group">
+          <div class="col-md-6">
+            {{form.password1}}
+            <small class="text-muted">must contains at least 8 characters and atleast one alphabet</small>
+          </div>
+          <div class="col-md-6">
+            {{form.password2}}
+          </div>
+          <ul>
+            {% for error in form.password2.errors %}
+            <li class="text-danger">{{error}}</li>
             {% endfor %}
-          </p>
-        {% endfor %}
-        <button type="submit">Sign up</button>
+          </ul>
+        </div>
+        <div class="row form-group">
+          <div class="col">
+            {{form.address}}
+          </div>
+        </div>
+        <div class="row form-group">
+          <div class="col-md-3 col-sm-4 mb-4 mb-md-0">
+            {{form.mobile_no.as_widget.0}}
+          </div>
+          <div class="col-md-9 col-sm-8 mb-4 mb-md-0">
+            {{form.mobile_no.as_widget.1}}
+          </div>
+          {% for error in form.mobile_no.errors %}
+          <li class="text-danger">{{error}}</li>
+          {% endfor %}
+          </ul>
+        </div>
+        <button type="submit" class="btn btn-block btn-primary">Sign up</button>
       </form>
+    </div>
+    <div class="tab-pane fade" id="login" role="tabpanel" aria-labelledby="nav-profile-tab">
 
-      <h2>Login</h2>
-
-    {% if error %}
-        <p style="color: red;font-size: 2rem;">{{error}}</p>
-    {% endif %}
-        
-    <form method="POST" action="{% url 'authenticate:login' %}">
+      {% if error %}
+      <p style="color: red;font-size: 2rem;">{{error}}</p>
+      {% endif %}
+      <form method="POST" action="{% url 'authenticate:login' %}" class="pane-top">
         {% csrf_token %}
-        <label for="email">Email id</label>
-        <input type="email" id="email" name="email"> <br>
-        <label for="password">Password</label>
-        <input type="password" id="password" name="password">
-        <br>
-        <button type="submit">Login</button>  
-    </form>
-    {% endblock content %}  
-    
-    {% block scripts %}
-        <script src="{% static 'authentication/customAuth.js' %}"></script>
-    {% endblock scripts %}
-      
+        <div class="form-group">
+          <input type="email" id="email" name="email" class="form-control" placeholder="Email address">
+        </div>
+        <div class="form-group">
+          <input type="password" id="password" name="password" class="form-control" placeholder="Password">
+        </div>
+        <button type="submit" class="btn btn-primary btn-block mx-auto">Login</button>
+
+      </form>
+    </div>
+  </div>
+
+
+</div>
+{% endblock content %}
