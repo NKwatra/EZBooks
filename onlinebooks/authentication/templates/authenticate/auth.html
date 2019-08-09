@@ -4,14 +4,34 @@
 <div class="custom-container">
   <nav>
     <div class="nav nav-tabs" id="nav-tab" role="tablist">
-      <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#signup" role="tab" aria-controls="nav-home"
-        aria-selected="true">SIGN UP</a>
-      <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#login" role="tab" aria-controls="nav-profile"
-        aria-selected="false">LOGIN</a>
+      <a class="nav-item nav-link 
+      {% if active_tab == None or active_tab == 'signup' %}
+        active
+      {% endif %}
+        " id="nav-home-tab" data-toggle="tab" href="#signup" role="tab" aria-controls="nav-home"
+        aria-selected="
+        {% if active_tab == None or active_tab == 'signup' %}
+          true
+        {% endif %}
+          ">SIGN UP</a>
+      <a class="nav-item nav-link 
+      {% if active_tab == 'login' %}
+        active
+      {% endif %}
+        " id="nav-profile-tab" data-toggle="tab" href="#login" role="tab" aria-controls="nav-profile"
+        aria-selected="
+        {% if active_tab == 'login' %}
+          true
+        {% endif %}
+          ">LOGIN</a>
     </div>
   </nav>
   <div class="tab-content" id="nav-tabContent">
-    <div class="tab-pane fade show active" id="signup" role="tabpanel" aria-labelledby="nav-home-tab">
+    <div class="tab-pane fade 
+    {% if active_tab == None or active_tab == 'signup' %}
+    show active
+    {% endif %}
+       " id="signup" role="tabpanel" aria-labelledby="nav-home-tab">
       <form method="POST" action="{% url 'authenticate:sign_up' %}" class="pane-top">
         {% csrf_token %}
         <div class="row form-group">
@@ -61,7 +81,11 @@
         <button type="submit" class="btn btn-block btn-primary">Sign up</button>
       </form>
     </div>
-    <div class="tab-pane fade" id="login" role="tabpanel" aria-labelledby="nav-profile-tab">
+    <div class="tab-pane fade 
+    {% if active_tab == 'login' %}
+    show active
+    {% endif %}
+      " id="login" role="tabpanel" aria-labelledby="nav-profile-tab">
 
       {% if error %}
       <p style="color: red;font-size: 2rem;">{{error}}</p>

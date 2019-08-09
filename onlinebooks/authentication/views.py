@@ -21,7 +21,7 @@ def sign_up(request):
         user = authenticate(username=user.email, password=raw_password)
         sign_in(request, user)
         return redirect(reverse('authenticate:authenticate'))
-    return render(request, 'authenticate/auth.html', {'form': form})   
+    return render(request, 'authenticate/auth.html', {'form': form, 'active_tab': 'sign-up'})   
 
 def login(request):
     email = request.POST['email']
@@ -32,7 +32,8 @@ def login(request):
         return redirect(reverse('authenticate:authenticate'))
     else :
         error_message = 'Incorrect username or password'
-        return render(request, 'authenticate/auth.html', {'error': error_message, 'form': SignUpForm() })
+        return render(request, 'authenticate/auth.html', {'error': error_message, 'form': SignUpForm(),
+         'active_tab': 'login' })
 
 def logout(request):
     sign_out(request)
