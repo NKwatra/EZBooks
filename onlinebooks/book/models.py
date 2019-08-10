@@ -10,6 +10,7 @@ from django.db import models
 #       publisher: publishing house of book
 #       no_of_pages: number of pages in the book
 #       price: price of the book
+#       description: a short description telling the synopsis of the book
 class Book(models.Model):
     category = models.CharField(max_length=150)
     cover_image = models.ImageField(upload_to="images/books/")
@@ -20,4 +21,7 @@ class Book(models.Model):
     publisher = models.CharField(max_length=200)
     no_of_pages = models.IntegerField()
     price = models.IntegerField()
+    description = models.TextField(default="No Information Available")
 
+    def __str__(self):
+        return self.title

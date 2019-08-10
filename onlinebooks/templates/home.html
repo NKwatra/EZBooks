@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block stylesheets %}
+    <link href="{% static 'home.css' %}" rel="stylesheet" type="text/css">
+{% endblock stylesheets %}
+    
+{% block content %}
+<div class="col-lg-4 col-12  col-md-8 pl-5 pl-lg-0 offset-md-4 offset-lg-8">
+  <form class="form-inline">
+      <input class="form-control mr-2 col-8" type="search" placeholder="Enter book or author's name" aria-label="Search" id="searchbar">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="SearchButton">Search</button>
+  </form>
+</div>
+<h1 class="text-center text-light text-uppercase bg-primary p-5 mt-3">Trending Collections</h1>
+{% for category, books in data.items %}
+    <div class="category-container">
+      <div class="category-header">
+        <h3 class="category-name">{{category}}</h3>
+        <a class="btn btn-primary fixed-width" href="#">View all</a>
+      </div>
+      <div class="d-none d-md-block scroll-background-left">
+        <i class="fas fa-chevron-left scroll-button"></i>
+      </div>
+      <div class="category-books-container">
+        {% for book in books %}
+          <a class="book-tile" href="#">
+            <img class="book-cover-img" src="{{book.cover_image.url}}" alt="Cover image of {{book.title}}">
+          </a>
+        {% endfor %}
+        <div class="d-none d-md-block scroll-background">
+          <i class="fas fa-chevron-right scroll-button"></i>
+        </div>
+      </div>
+    </div>
+{% endfor %}
+    
+<!-- <div class="card-deck">
+        
+        
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+          </div>
+          
+            <small class="text-muted">Last updated 3 mins ago</small>
+          </div>
+        </div>
+        <div class="card">
+          <img class="card-img-top" src="..." alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+          </div>
+          <div class="card-footer">
+            <small class="text-muted">Last updated 3 mins ago</small>
+          </div>
+        </div>
+        <div class="card">
+          <img class="card-img-top" src="..." alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+          </div>
+          <div class="card-footer">
+            <small class="text-muted">Last updated 3 mins ago</small>
+          </div>
+        </div>
+      </div> -->
+{% endblock content %}
+    

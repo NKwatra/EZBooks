@@ -31,7 +31,7 @@ SECRET_KEY = info[0]
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['0d24b7a0.ngrok.io', '127.0.0.1',]
 
 
 # Application definition
@@ -57,6 +57,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+X_FRAME_OPTIONS = 'ALLOW_FROM http://ami.responsivedesign.is'
 
 ROOT_URLCONF = 'onlinebooks.urls'
 
@@ -130,7 +132,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
-STATICFILES_DIRS =[]
+STATICFILES_DIRS =[os.path.join(BASE_DIR, 'onlinebooks/static/'),]
 
 STATIC_URL = '/static/'
 

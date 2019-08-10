@@ -1,0 +1,120 @@
+.category-container {
+    display: flex;
+    flex-direction: column;
+    margin: 2vh 0;
+    padding: 10px;
+    z-index: 10;
+    background-color: #81DC76;
+    margin-left: auto;
+    margin-right: auto;
+    width: 96%;
+    border-radius: 10px;
+}
+
+.category-name {
+    color: white;
+}
+
+.fixed-width{
+    max-height: 80px;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+.category-header {
+    display: flex;
+    justify-content: space-around;
+    text-transform: uppercase;
+}
+
+.category-books-container {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 3vh;
+    background-color: white;
+    border-radius: 10px;
+    z-index: 20;
+}
+
+.book-tile {
+    display: block;
+    width: 48%;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.book-cover-img {
+    height: 40vh;
+    max-width: 100%;
+}
+
+@media (min-width: 768px)
+{
+    .category-container{
+        flex-direction: row;
+        position: relative;
+        background-color: white;
+    }
+
+    .category-header{
+        flex-direction: column;
+        width: 278px;
+        position: absolute;
+        left: 0;
+        top: 0;
+        margin: 0;
+        height: 100%;
+        padding: 20px;
+        justify-content: center;
+        background: url(https://rukminim1.flixcart.com/flap/278/278/image/5af75c5c76e2ed1c.jpg?q=90);
+        background-repeat: no-repeat;
+        background-position: left bottom;
+        background-color: white;
+        z-index: 30;
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+    }
+
+    .category-name{
+        color: black;
+    }
+    .category-books-container{
+        width: 100%;
+        margin: 0;
+        padding-left: 278px;
+        flex-wrap: nowrap;
+        overflow: scroll;
+    }
+
+    .book-tile{
+        width: 25%;
+        min-width: 350px;
+    }
+
+    .fixed-width{
+        width: 150px;
+    }
+
+    .scroll-button{
+        font-size: 4.5rem;
+    }
+
+    .scroll-background{
+        background: white;
+        z-index: 50;
+        position: absolute;
+        right: 0;
+        top: 35%;
+        padding: 10px;
+        box-shadow: -1px -1px 1px 1px gray;
+    }
+
+    .scroll-background-left{
+        background: white;
+        z-index: 50;
+        position: absolute;
+        left: 278px;
+        top: 35%;
+        padding: 10px;
+        box-shadow: -1px -1px 1px 1px gray;
+    }
+}
