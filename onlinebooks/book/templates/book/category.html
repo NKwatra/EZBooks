@@ -1,6 +1,8 @@
-{% extends 'base.html' %} {% load staticfiles %} {% load Cache %} {% block stylesheets %}
-<link href="{% static 'book/category.css' %}?{% cache_bust %}" rel="stylesheet" type="text/css"> {% endblock stylesheets
-%} {% block content %}
+{% extends 'base.html' %} {% load staticfiles %} {% load Cache %} 
+{% block stylesheets %}
+<link href="{% static 'book/category.css' %}?{% cache_bust %}" rel="stylesheet" type="text/css">
+ {% endblock stylesheets%} 
+ {% block content %}
 <div class="col-lg-4 col-12  col-md-8 pl-5 pl-lg-0 offset-md-4 offset-lg-8">
     <form class="form-inline">
         <input class="form-control mr-2 col-8" type="search" placeholder="Enter book or author's name" aria-label="Search" id="searchbar">
@@ -8,14 +10,14 @@
     </form>
 </div>
 <h1 class="text-md-center text-light text-uppercase bg-primary py-5 px-2 px-md-5 mt-3">{{category}}</h1>
-<div class="container">
-    <div class="row">
+<div class="container" id="books-section">
+    <div class="row" id="books-container">
         {% for book in books_list %}
         <div class="col-12 col-md-6 col-lg-3 p-1">
             <div class="book-tile">
                 <a class="d-block text-center" href="#">
                     <img src="{{book.cover_image.url}}" alt="cover image of {{book.title}}" class="cover-img">
-                    <div class="mt-md-3">
+                    <div class="mt-md-2">
                         <p class="book-title">{{book.title}}</p>
                         <p class="text-muted pl-3 small my-0">By {{book.author}}</p>
                         <div class="my-0 d-flex justify-content-around">
@@ -32,3 +34,8 @@
     </div>
 </div>
 {% endblock content %}
+
+{% block scripts %}
+    <script src="{% static 'book/category.js' %}?{% cache_bust %}"></script>
+{% endblock scripts %}
+    
