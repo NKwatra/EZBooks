@@ -13,6 +13,7 @@
   </form>
 </div>
 <h1 class="text-center text-light text-uppercase bg-primary p-5 mt-3">Trending Collections</h1>
+<div id="books-section">
 {% for category, books in data.items %}
     <div class="category-container">
       <div class="category-header">
@@ -35,6 +36,7 @@
       </div>
     </div>
 {% endfor %}
+</div>
 {% endblock content %}
 
 {% block scripts %}

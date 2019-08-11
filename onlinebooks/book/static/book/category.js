@@ -8,8 +8,7 @@ $('document').ready(
                     {
                         q: book_or_author
                     }).done(function (data) {
-                        // $("#books-container").css({ 'display': 'none' });
-                        found_results = `<div class="row" id="books-container">`
+                        found_results = `<div class="row">`
                         for (var i = 0; i < data.length; i++) {
                             found_results += `<div class="col-12 col-md-6 col-lg-3 p-1">
                                 <div class="book-tile">
