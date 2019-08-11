@@ -19,7 +19,7 @@
         <h3 class="category-name">{{category}}</h3>
         <a class="btn btn-primary fixed-width" href="#">View all</a>
       </div>
-      <div class="d-none d-md-block scroll-background-left">
+      <div class="d-none scroll-background-left">
         <i class="fas fa-chevron-left scroll-button"></i>
       </div>
       <div class="category-books-container">
@@ -34,38 +34,10 @@
       </div>
     </div>
 {% endfor %}
-    
-<!-- <div class="card-deck">
-        
-        
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-          </div>
-          
-            <small class="text-muted">Last updated 3 mins ago</small>
-          </div>
-        </div>
-        <div class="card">
-          <img class="card-img-top" src="..." alt="Card image cap">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-          </div>
-          <div class="card-footer">
-            <small class="text-muted">Last updated 3 mins ago</small>
-          </div>
-        </div>
-        <div class="card">
-          <img class="card-img-top" src="..." alt="Card image cap">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-          </div>
-          <div class="card-footer">
-            <small class="text-muted">Last updated 3 mins ago</small>
-          </div>
-        </div>
-      </div> -->
 {% endblock content %}
+
+{% block scripts %}
+    <script src="{% static 'home.js' %}"></script>
+{% endblock scripts %}
+  
     

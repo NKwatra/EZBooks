@@ -1,0 +1,44 @@
+body {
+    background-color: #f4f4ef;
+}
+
+.custom-container {
+    width: 90%;
+    margin: 20vh auto;
+    border: 1px solid #dbe2e8;
+    background-color: #fff;
+}
+
+#nav-tabContent {
+    padding-left: 4vw;
+    padding-right: 4vw;
+    padding-bottom: 6vh;
+}
+
+.pane-top {
+    margin-top: 8vh;
+}
+
+@media (min-width: 576px) {
+    .custom-container {
+        width: 80%;
+    }
+}
+
+@media(min-width: 768px) {
+    .custom-container {
+        width: 75%;
+    }
+}
+
+@media(min-width: 992px) {
+    .custom-container {
+        width: 55%;
+    }
+}
+
+@media(min-width: 1200px) {
+    .custom-container {
+        width: 50%;
+    }
+}
