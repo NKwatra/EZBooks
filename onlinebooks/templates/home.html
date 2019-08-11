@@ -26,6 +26,7 @@
         {% for book in books %}
           <a class="book-tile" href="#">
             <img class="book-cover-img" src="{{book.cover_image.url}}" alt="Cover image of {{book.title}}">
+            <div class="h4 hidden-title  d-none">{{book.title}}</div>
           </a>
         {% endfor %}
         <div class="d-none d-md-block scroll-background">
