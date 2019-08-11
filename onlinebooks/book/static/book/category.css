@@ -2,7 +2,7 @@ body {
     background-color: #f1f3f6;
 }
 
-.book-tile {
+.book-tile-detail{
     height: 50vh;
     background-color: white;
     border-radius: 20px;
@@ -41,19 +41,19 @@ a, a:hover {
 }
 
 @media (min-width: 920px) {
-    .book-tile:hover {
+    .book-tile-detail:hover {
         box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, .11);
     }
 }
 
 @media (min-width: 1200px) {
-    .book-tile {
+    .book-tile-detail {
         height: 47vh;
     }
 }
 
 @media (max-width: 576px) {
-    .book-tile {
+    .book-tile-detail {
         height: 55vh;
     }
 }

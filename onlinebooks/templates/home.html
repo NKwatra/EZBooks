@@ -1,8 +1,10 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
+{% load Cache %}
 
 {% block stylesheets %}
-    <link href="{% static 'home.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'home.css' %}?{% cache_bust %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'book/category.css' %}?{% cache_bust %}" rel="stylesheet" type="text/css">
 {% endblock stylesheets %}
     
 {% block content %}

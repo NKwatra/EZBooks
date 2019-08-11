@@ -8,7 +8,7 @@ def category(request, category):
     all_books = Book.objects.filter(category__iexact=category).order_by('avg_rating').reverse()
     return render(request, 'book/category.html', {'books_list': all_books, 'category': category})
 
-def search(request, category):
+def search(request):
     query = request.GET['q']
     found_books = Book.objects.filter(Q(author__icontains=query) | Q(title__icontains=query))
     print(json.dumps(list(found_books.values())))

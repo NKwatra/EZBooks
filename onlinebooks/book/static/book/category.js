@@ -4,7 +4,7 @@ $('document').ready(
             event.preventDefault();
             var book_or_author = $('#searchbar').val();
             if (book_or_author != '') {
-                $.get("/books/" + $('h1').text() + "/ajax",
+                $.get("/books/ajax",
                     {
                         q: book_or_author
                     }).done(function (data) {
