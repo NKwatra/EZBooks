@@ -1,0 +1,34 @@
+{% extends 'base.html' %} {% load staticfiles %} {% load Cache %} {% block stylesheets %}
+<link href="{% static 'book/category.css' %}?{% cache_bust %}" rel="stylesheet" type="text/css"> {% endblock stylesheets
+%} {% block content %}
+<div class="col-lg-4 col-12  col-md-8 pl-5 pl-lg-0 offset-md-4 offset-lg-8">
+    <form class="form-inline">
+        <input class="form-control mr-2 col-8" type="search" placeholder="Enter book or author's name" aria-label="Search" id="searchbar">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="SearchButton">Search</button>
+    </form>
+</div>
+<h1 class="text-md-center text-light text-uppercase bg-primary py-5 px-2 px-md-5 mt-3">{{category}}</h1>
+<div class="container">
+    <div class="row">
+        {% for book in books_list %}
+        <div class="col-12 col-md-6 col-lg-3 p-1">
+            <div class="book-tile">
+                <a class="d-block text-center" href="#">
+                    <img src="{{book.cover_image.url}}" alt="cover image of {{book.title}}" class="cover-img">
+                    <div class="mt-md-3">
+                        <p class="book-title">{{book.title}}</p>
+                        <p class="text-muted pl-3 small my-0">By {{book.author}}</p>
+                        <div class="my-0 d-flex justify-content-around">
+                            <div class="my-0 text-center rating-background">
+                                {{book.avg_rating}}&nbsp;<i class="fas fa-star"></i>
+                            </div>
+                            <p class="my-0 font-weight-bold">₹{{book.price}}</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock content %}

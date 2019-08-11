@@ -17,7 +17,7 @@
     <div class="category-container">
       <div class="category-header">
         <h3 class="category-name">{{category}}</h3>
-        <a class="btn btn-primary fixed-width" href="#">View all</a>
+        <a class="btn btn-primary fixed-width" href="{% url 'book:category' category %}">View all</a>
       </div>
       <div class="d-none scroll-background-left">
         <i class="fas fa-chevron-left scroll-button"></i>
