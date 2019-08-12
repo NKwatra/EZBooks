@@ -1,0 +1,23 @@
+.white-background{
+    background-color: white;
+    min-height: 45vh;
+}
+
+.page-container{
+    margin-top: 20vh;
+}
+
+.comp-logo{
+    height: 10vh;
+    width: auto;
+}
+
+.comp-name{
+    margin-top: 0;
+}
+
+.mail-background{
+    background-color: #f4f4f4;
+    font-size:2rem;
+    color: #f36c23;
+}

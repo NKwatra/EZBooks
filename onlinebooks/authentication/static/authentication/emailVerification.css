@@ -1,0 +1,14 @@
+.container{
+    width: 90%;
+    color: black !important;
+}
+
+.logo-container{
+    text-align: center;
+}
+
+.logo{
+    height: 100px;
+    width: auto;
+    max-width: 150px;
+}

@@ -35,23 +35,11 @@
     z-index: 20;
 }
 
-.hidden-title{
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: -10px;
-    z-index: 10;
-    padding: 10px;
-    background-color: black;
-    color: white;
-}
-
 .book-tile {
     display: block;
     width: 48%;
     text-align: center;
     margin-bottom: 10px;
-    position: relative;
 }
 
 .book-cover-img {

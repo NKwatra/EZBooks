@@ -1,0 +1,20 @@
+{% load inlinecss %}
+{% load staticfiles %}
+{% autoescape off %}
+{% inlinecss "authentication/emailVerification.css" %}
+    <div class="container">
+        <div class="logo-container">
+            <img class="logo" src="{% static 'CompanyIcon.jpg' %}" alt="Company logo">
+        </div>
+        <p>Hi {{user.first_name}},</p>
+        <p> We are really glad that you joined <strong>EZBOOKS</strong> and we welcome you to be a 
+        part of the large community of readers connected with us. EZBOOKS  was started with the aim
+        to promote habit of reading books among the millenials and we are glad to announce that it has grown out to a community of 
+        100,000 members. You are just one step away from being a part of this adventure and joining a 
+        community of avid readers.</p>
+        <a href="http://{{domain}}{% url 'authenticate:activate' uidb64=uid token=token%}">Please click here to confirm your email address</a>
+        <p>Thank you so much and we look forward to being of service to you.</p>
+        <p>Regards, <br>Team EZBOOKS</p>
+    </div>
+{% endinlinecss %}
+{% endautoescape %}
