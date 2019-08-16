@@ -1,0 +1,68 @@
+{% extends 'base.html' %} 
+{% load staticfiles %}
+{% load Cache %}
+{% block stylesheets %}
+    <link type="text/css" rel="stylesheet" href="{% static 'book/detail.css' %}?{% cache_bust %}">
+    <!-- <link rel="stylesheet" type="text/css" href="{% static 'book/category.css' %}?{% cache_bust %}"> -->
+{% endblock stylesheets %}
+     
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12 col-lg-4 position-sticky text-center">
+            <img src="{{book.cover_image.url}}" alt="cover image of {{book.title}}" class="display_image">
+            <div class="row mt-lg-5">
+                <div class="col-6">
+                    <a class="btn btn-warning btn-lg text-uppercase action-button"> 
+                            <i class="far fa-credit-card mr-2"></i>rent it</a>
+                </div>
+                <div class="col-6">
+                    <a class="btn btn-success btn-lg text-uppercase action-button">
+                            <i class="fas fa-bolt mr-2"></i>buy now</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-lg-8">
+            <h1 class="font-weight-light">{{book.title}} <i class="far fa-heart ml-lg-5 text-danger"></i></h1>
+            <div class="my-0 d-flex">
+                <div class="my-0 text-center rating-background mr-4">
+                    {{book.avg_rating}}&nbsp;<i class="fas fa-star"></i>
+                </div>
+                <p class="my-0 text-muted">By {{book.author}}</p>
+            </div>
+           <div class="row mt-2">
+               <div class="col-2 h3">
+                    ₹{{book.price}}
+               </div>
+               <div class="col-10 text-primary h5">
+                   Hurry! only {{book.stock}} left in stock
+               </div>
+           </div>
+            <p class="mt-5 mb-5">{{book.description}}</p>
+            <div class="row">
+                <div class="col-3 text-muted">
+                    Genre
+                </div>
+                <div class="col-9">
+                    {{book.category}}
+                </div>
+                <div class="col-3 text-muted">
+                    Publisher
+                </div>
+                <div class="col-9">
+                    {{book.publisher}}
+                </div>
+                <div class="col-3 text-muted">
+                    Number of Pages
+                </div>
+                <div class="col-9">
+                    {{book.no_of_pages}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        
+    </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,21 @@
+body{
+    background-color: white !important;
+}
+
+.display_image{
+    height: 45vh;
+    width: auto;
+    max-width: 100%;
+}
+
+.rating-background {
+    color: white;
+    background-color: #388e3c;
+    width: 60px;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.action-button{
+    padding: 15px 30px;
+}

@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .models import Book
 from django.db.models import Q
 from django.http import HttpResponse
@@ -13,3 +13,8 @@ def search(request):
     found_books = Book.objects.filter(Q(author__icontains=query) | Q(title__icontains=query))
     print(json.dumps(list(found_books.values())))
     return HttpResponse(json.dumps(list(found_books.values())), content_type='application/json')
+
+def detail(request, book_id):
+   book = get_object_or_404(Book, pk=book_id)
+   return render(request, "book/detail.html", {'book': book})
+
