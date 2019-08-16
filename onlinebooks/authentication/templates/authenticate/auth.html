@@ -32,7 +32,7 @@
     show active
     {% endif %}
        " id="signup" role="tabpanel" aria-labelledby="nav-home-tab">
-      <form method="POST" action="{% url 'authenticate:sign_up' %}" class="pane-top">
+      <form method="POST" action="{% url 'authenticate:sign_up' %}" class="pane-top" id="signUpForm">
         {% csrf_token %}
         <div class="row form-group">
           <div class="col-md-6 mb-4 mb-md-0">
@@ -110,3 +110,7 @@
 
 </div>
 {% endblock content %}
+
+{% block scripts %}
+  <script src="{% static 'authentication/formValidation.js' %}"></script>
+{% endblock scripts %}

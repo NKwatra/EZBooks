@@ -3,7 +3,7 @@ from .forms import SignUpForm
 from django.contrib.auth import authenticate, login as sign_in, logout as sign_out
 from django.urls import reverse
 from django.template.loader import render_to_string
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.contrib.sites.shortcuts import get_current_site
 from django.core.mail import EmailMessage
 from user.models import Customer
@@ -71,3 +71,11 @@ def activate(request, uidb64, token):
         return redirect(reverse('home'))
     else:
         return HttpResponse("This link is no longer valid, please sign up again")    
+
+def checkEmail(request):
+    email_id = request.GET["email"]
+    try:
+        user = User.objects.get(email__iexact=email_id)
+        return JsonResponse({"exists": True})
+    except User.DoesNotExist:
+        return JsonResponse({"exists": False})
