@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Book
+from .models import Book, Review
 from django.db.models import Q
 from django.http import HttpResponse
 import json
@@ -16,5 +16,6 @@ def search(request):
 
 def detail(request, book_id):
    book = get_object_or_404(Book, pk=book_id)
-   return render(request, "book/detail.html", {'book': book})
+   reviews = Review.objects.filter(book__id = book_id)
+   return render(request, "book/detail.html", {'book': book, 'reviews': reviews})
 

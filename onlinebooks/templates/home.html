@@ -27,7 +27,7 @@
       </div>
       <div class="category-books-container">
         {% for book in books %}
-          <a class="book-tile" href="#">
+          <a class="book-tile" href="{% url 'book:detail' book.id %}">
             <img class="book-cover-img" src="{{book.cover_image.url}}" alt="Cover image of {{book.title}}">
             <div class="h4 hidden-title  d-none">{{book.title}}</div>
           </a>
