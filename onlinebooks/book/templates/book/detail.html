@@ -77,7 +77,7 @@
                             {{review.rating}}&nbsp;<i class="fas fa-star"></i>
                          </div>
                          <div class="col-8 col-lg-11 text-muted">
-                           {{review.user.first_name|add:" "|add:review.user.last_name}}
+                           {{review.user.user.first_name|add:" "|add:review.user.user.last_name}}
                          </div>
                          <div class="col-12 mt-2 pl-5">
                              {{review.review}}

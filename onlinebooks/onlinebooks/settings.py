@@ -38,6 +38,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'authentication',
+    'review',
     'user',
     'book',
     'django.contrib.admin',
