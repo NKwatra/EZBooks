@@ -3,7 +3,6 @@
 {% load Cache %}
 {% block stylesheets %}
     <link type="text/css" rel="stylesheet" href="{% static 'book/detail.css' %}?{% cache_bust %}">
-    <!-- <link rel="stylesheet" type="text/css" href="{% static 'book/category.css' %}?{% cache_bust %}"> -->
 {% endblock stylesheets %}
      
 {% block content %}
