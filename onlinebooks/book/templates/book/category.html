@@ -15,7 +15,7 @@
         {% for book in books_list %}
         <div class="col-12 col-md-6 col-lg-3 p-1">
             <div class="book-tile-detail">
-                <a class="d-block text-center" href="#">
+                <a class="d-block text-center" href="{% url 'book:detail' book.id %}">
                     <img src="{{book.cover_image.url}}" alt="cover image of {{book.title}}" class="cover-img">
                     <div class="mt-md-2">
                         <p class="book-title">{{book.title}}</p>

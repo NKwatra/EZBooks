@@ -19,9 +19,11 @@ def search(request):
 def detail(request, book_id):
    book = get_object_or_404(Book, pk=book_id)
    reviews = Review.objects.filter(book__id = book_id)
-   user = Customer.objects.get(user__id = request.user.id)
+   user = None
+   if request.user.is_authenticated:
+       user = Customer.objects.get(user__id = request.user.id)
    wishlisted = False
-   if book in user.wishlist.all():
+   if user is not None and book in user.wishlist.all():
        wishlisted = True
    return render(request, "book/detail.html", {'book': book, 'reviews': reviews, 'wishlisted': wishlisted})
 

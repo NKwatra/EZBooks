@@ -1,3 +1,63 @@
 body{
-    background-color: white;
+    background-color: white !important;
+}
+
+.display_image{
+    height: 45vh;
+    width: auto;
+    max-width: 100%;
+}
+
+.rating-background {
+    color: white;
+    background-color: #388e3c;
+    max-width: 60px;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.action-button{
+    padding: 15px 30px;
+}
+
+#wishlist-icon{
+    cursor: pointer;
+}
+
+#wishlisted-alert, #removed-alert{
+    position: fixed;
+    bottom: 40px;
+    color: white;
+    background-color: black;
+    font-size: 1.2rem;
+    visibility: hidden;
+}
+
+@media (max-width: 991px){
+    #sidebar{
+        position: static !important;
+        margin-bottom: 3rem;
+    }
+
+    #actions-container{
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 10;
+        background-color: white;
+    }
+
+    #full-page-container{
+        position: static !important;
+    }
+
+    .action-button{
+        width: 100%;
+        border-radius: 0;
+    }
+
+    .small-screen-zero-padding{
+        padding: 0;
+    }
 }
