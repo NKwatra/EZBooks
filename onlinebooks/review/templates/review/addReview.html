@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load Cache %}
+{% block stylesheets %}
+    <link href="{% static 'review/reviewForm.css' %}?{% cache_bust %}" rel="stylesheet" type="text/css">
+{% endblock stylesheets %}
+    
+ {% block content %}
+<div class="container">
+    <div class="row text-center">
+        <div class="col-12 display-4 text-uppercase mb-3">
+            Product Review
+        </div>
+        <div class="col-12 mt-2 h3">
+            {{book.title}}
+        </div>
+        <div class="col-12 col-lg-8 offset-lg-2 mt-5 form-background">
+            <form action="{% url 'review:addReview' book.id %}" method="POST">
+                {% csrf_token %}
+                <div class="row form-group">
+                    <div class="col-12 col-md-6">
+                        On a scale of 5, how much would you rate the book?<span class="text-danger" style="font-size: 1.3rem;"><sup>*</sup></span>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <input type="number" class="form-control" name="rating" id="rating" placeholder="5" required>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-12 col-md-6">
+                        Any comments or feedback <span class="text-danger" style="font-size: 1.3rem;"><sup>*</sup></span>
+                    </div>
+                    <div class="col-12 col-md-6">
+                    <textarea type="text" class="form-control" name="review" id="review" rows="8" required>Any comments or feedback...</textarea>
+                    </div>
+                </div>
+                <div class="row">
+                    <input type="submit" class="btn btn-primary mx-auto btn-lg text-uppercase" id="submit" value="add review">
+                    
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}
