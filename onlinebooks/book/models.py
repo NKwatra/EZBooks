@@ -1,5 +1,4 @@
 from django.db import models
-from user.models import Customer
 from django.core.validators import MaxValueValidator, MinValueValidator
 
 #   Model for book:
@@ -24,7 +23,6 @@ class Book(models.Model):
     no_of_pages = models.IntegerField()
     price = models.IntegerField()
     description = models.TextField(default="No Information Available")
-    reviews = models.ManyToManyField(Customer, through='review.Review')
 
     def __str__(self):
         return self.title

@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.dispatch import receiver
 from django.db.models.signals import post_save
+from book.models import Book
 
 app_name = 'Customer'
 
@@ -15,6 +16,8 @@ class Customer(models.Model):
     profile_pic = models.ImageField(upload_to="images/users/")
     address = models.TextField()
     mobile_no = models.CharField(max_length=15, null=True)
+    reviews = models.ManyToManyField(Book, through='review.Review', related_name='reviews')
+    wishlist = models.ManyToManyField(Book, related_name='wishlist')
 
     def __str__(self):
         return self.user.email

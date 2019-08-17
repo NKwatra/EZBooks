@@ -2,8 +2,9 @@ from django.shortcuts import render, get_object_or_404
 from .models import Book
 from review.models import Review
 from django.db.models import Q
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 import json
+from user.models import Customer
 
 def category(request, category):
     all_books = Book.objects.filter(category__iexact=category).order_by('avg_rating').reverse()
@@ -18,5 +19,19 @@ def search(request):
 def detail(request, book_id):
    book = get_object_or_404(Book, pk=book_id)
    reviews = Review.objects.filter(book__id = book_id)
-   return render(request, "book/detail.html", {'book': book, 'reviews': reviews})
+   user = Customer.objects.get(user__id = request.user.id)
+   wishlisted = False
+   if book in user.wishlist.all():
+       wishlisted = True
+   return render(request, "book/detail.html", {'book': book, 'reviews': reviews, 'wishlisted': wishlisted})
 
+def wishlist(request):
+    book_id = request.GET['bookId']
+    current_customer = Customer.objects.get(user__id=request.user.id)
+    wishlisted_book = Book.objects.get(pk=book_id)
+    if(request.GET['add'] == 'true'):
+        current_customer.wishlist.add(wishlisted_book);
+        return JsonResponse({'added': True})
+    else:
+        current_customer.wishlist.remove(wishlisted_book)
+        return JsonResponse({'added': False})

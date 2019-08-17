@@ -23,7 +23,14 @@
             </div>
         </div>
         <div class="col-12 col-lg-8 offset-lg-4">
-            <h1 class="font-weight-light">{{book.title}} <i class="far fa-heart ml-lg-5 text-danger"></i></h1>
+            <h1 class="font-weight-light">{{book.title}} <i class="fa-heart ml-lg-5 text-danger
+                
+                {% if wishlisted %}
+                    fas
+                {% else %}
+                    far    
+                {% endif %}
+                    " id="wishlist-icon" data-toggle="tooltip" data-placement="bottom" title="Add to Wishlist"></i></h1>
             <div class="my-0 d-flex">
                 <div class="my-0 text-center rating-background mr-4">
                     {{book.avg_rating}}&nbsp;<i class="fas fa-star"></i>
@@ -88,7 +95,31 @@
                     </div>
                 {% endfor %}    
             </div>
+            <div class="row">
+                <div class="col-12 col-lg-4 offset-lg-3">
+                    <div class="alert alert-dismissible fade show" role="alert" id="wishlisted-alert">
+                        <i class="fas fa-check-circle mr-4 text-success"></i>Added to your wishlist
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                </div>
+                <div class="col-12 col-lg-4 offset-lg-3">
+                    <div class="alert alert-dismissible fade show" role="alert" id="removed-alert">
+                        <i class="fas fa-check-circle mr-4 text-success"></i>Removed from your wishlist
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>
 {% endblock content %}
+
+{% block scripts %}
+    <script src="{% static 'book/detail.js' %}?{% cache_bust %}"></script>
+{% endblock scripts %}
+    
