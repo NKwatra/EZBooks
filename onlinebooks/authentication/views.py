@@ -11,6 +11,7 @@ from django.contrib.auth.models import User
 from .tokens import account_activation_token
 from django.utils.encoding import force_bytes, force_text
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+import re
 
 def auth(request):
     form = SignUpForm()
@@ -25,7 +26,11 @@ def sign_up(request):
         user.save()
         user.refresh_from_db()
         user.customer.address = form.cleaned_data.get('address')
-        user.customer.mobile_no = form.cleaned_data.get('mobile_no').replace(' ', '')
+        mobile = form.cleaned_data.get('mobile_no').replace(' ', '')
+        if re.search("^[+]", mobile):
+            user.customer.mobile_no = mobile
+        else:    
+            user.customer.mobile_no = "+" + mobile
         user.save()
         mail_subject = 'Activation of account for EZBOOKS'
         mail_body = render_to_string('authenticate/emailVerification.html',{

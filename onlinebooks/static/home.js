@@ -34,7 +34,7 @@ $(document).ready(
                             for (var i = 0; i < data.length; i++) {
                                 found_results += `<div class="col-12 col-md-6 col-lg-3 p-1">
                                     <div class="book-tile-detail">
-                                        <a class="d-block text-center" href="#">
+                                        <a class="d-block text-center" href="/books/detail/${data[i].id}">
                                             <img src="/media/${data[i].cover_image}" alt="cover image of ${data[i].title}" class="cover-img">
                                             <div class="mt-md-2">
                                                 <p class="book-title">${data[i].title}</p>
@@ -50,9 +50,19 @@ $(document).ready(
                                     </div>
                                 </div>`;
                             }
+                            if(data.length == 0)
+                            {
+                                found_results += `<div class="col-12 text-center pt-5"><span style="font-size: 1.5rem;">Sorry, no results matched your search. Please 
+                                double check for any typos or spelling mistakes</span></div>`;
+                            }
+                            found_results += '</div>'
                             $("#books-section").html(found_results).addClass('container');
                         });
                 }
-            })    
+            });
+
+            $("#searchbar").focus(function(){
+                $(this).val("");
+            });    
     }
 )
