@@ -17,6 +17,7 @@ class Customer(models.Model):
     mobile_no = models.CharField(max_length=16, null=True)
     reviews = models.ManyToManyField(Book, through='review.Review', related_name='reviews')
     wishlist = models.ManyToManyField(Book, related_name='wishlist')
+    orders = models.ManyToManyField(Book, through='order.Order', related_name='orders')
 
 
     def __str__(self):
