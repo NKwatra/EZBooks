@@ -1,0 +1,20 @@
+.edit-link{
+    cursor: pointer;
+}
+
+.bg-white{
+    background-color: white;
+}
+
+.alert-tick{
+    font-size: 1.5rem;
+}
+
+#updated-alert{
+    position: fixed;
+    bottom: 40px;
+    color: white;
+    background-color: black;
+    font-size: 1.2rem;
+    visibility: hidden;
+}

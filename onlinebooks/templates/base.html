@@ -30,7 +30,7 @@
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                               <a class="dropdown-item" href="/accounts/profile/{{user.id}}">My Profile</a>
                               <hr>
-                              <a class="dropdown-item" href="#">Wishlist</a>
+                              <a class="dropdown-item" href="{% url 'user:wishlist' %}">My Wishlist</a>
                               <hr>
                               <a class="dropdown-item" href="{% url 'authenticate:logout' %}">Logout</a>
                             </div>

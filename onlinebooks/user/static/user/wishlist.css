@@ -1,0 +1,43 @@
+.white-background{
+    background-color: white;
+}
+
+.large-font{
+    font-size: 1.5rem;
+}
+
+.rating-background {
+    color: white;
+    background-color: #388e3c;
+    width: 60px;
+    border-radius: 5px;
+    padding-bottom: 2px;
+    padding-top: 2px;
+}
+
+.price-font{
+    font-size: 1.2rem;
+}
+
+.item-img{
+    height: 15vh;
+    max-width: 100%;
+    width: auto;
+}
+
+.cursor-pointer{
+    cursor: pointer;
+}
+
+.no-decor:hover{
+    text-decoration: none;
+}
+
+#removed-alert{
+    position: fixed;
+    bottom: 40px;
+    color: white;
+    background-color: black;
+    font-size: 1.2rem;
+    visibility: hidden;
+}

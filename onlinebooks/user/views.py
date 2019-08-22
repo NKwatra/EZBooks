@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Customer
+from book.models import Book
 from django.urls import reverse
 from django.http import JsonResponse
 from django.contrib.auth import update_session_auth_hash
@@ -35,4 +36,18 @@ def password_change(request):
             pass 
     else:
         form = PasswordChangeForm(request.user)
-    return render(request, "user/password_change.html", {'form': form})                   
+    return render(request, "user/password_change.html", {'form': form})  
+
+@login_required(login_url="authenticate:authenticate")
+def wishlist(request):
+    customer = Customer.objects.get(user__id=request.user.id)
+    wishlist_items = list(customer.wishlist.all())
+    return render(request, 'user/wishlist.html', {"items": wishlist_items})
+
+@login_required(login_url="authenticate:authenticate")
+def remove_wishlist(request):
+    Id = request.POST.get("book_id")
+    book = Book.objects.get(pk=Id)
+    customer = Customer.objects.get(user__id=request.user.id)   
+    customer.wishlist.remove(book)
+    return JsonResponse({"removed": True})
