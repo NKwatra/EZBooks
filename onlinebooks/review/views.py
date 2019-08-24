@@ -28,4 +28,13 @@ def addReview(request, book_id):
         rating = request.POST["rating"]
         current_review = Review(review=review, rating=rating, book=book, user=customer)
         current_review.save()
+        book = current_review.book
+        count=0
+        for review in book.review_set.all():
+            count += review.rating
+        print(count)    
+        book.avg_rating = count / len(book.review_set.all())
+        print(book.avg_rating)
+        book.save()  
+        print(book.avg_rating)  
         return redirect(reverse('book:detail', kwargs={'book_id': book_id}))

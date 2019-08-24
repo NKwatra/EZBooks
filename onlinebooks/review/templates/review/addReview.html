@@ -42,3 +42,8 @@
     </div>
 </div>
 {% endblock content %}
+
+{% block scripts %}
+    <script src="{% static 'review/addReview.js' %}?{% cache_bust %}"></script>
+{% endblock scripts %}
+    

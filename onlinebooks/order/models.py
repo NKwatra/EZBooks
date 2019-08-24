@@ -16,3 +16,6 @@ class Order(models.Model):
         (1, "active"),
         (2, "inactive"),
     ], default=2)
+
+    def __str__(self):
+        return self.book.title + " -> " + self.user.user.first_name

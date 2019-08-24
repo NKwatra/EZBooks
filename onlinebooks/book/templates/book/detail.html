@@ -32,7 +32,7 @@
                     " id="wishlist-icon" data-toggle="tooltip" data-placement="bottom" title="Add to Wishlist"></i></h1>
             <div class="my-0 d-flex">
                 <div class="my-0 text-center rating-background mr-4">
-                    {{book.avg_rating}}&nbsp;<i class="fas fa-star"></i>
+                    {{book.avg_rating|floatformat:1}}&nbsp;<i class="fas fa-star"></i>
                 </div>
                 <p class="my-0 text-muted">By {{book.author}}</p>
             </div>
