@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from .forms import SignUpForm
 from django.contrib.auth import authenticate, login as sign_in, logout as sign_out
 from django.urls import reverse
+from django.contrib.auth.forms import SetPasswordForm
 from django.template.loader import render_to_string
 from django.http import HttpResponse, JsonResponse
 from django.contrib.sites.shortcuts import get_current_site
@@ -84,3 +85,49 @@ def checkEmail(request):
         return JsonResponse({"exists": True})
     except User.DoesNotExist:
         return JsonResponse({"exists": False})
+
+def password_reset(request):
+    if request.method == "GET":
+        return render(request, "authenticate/password_reset.html")
+    else:
+        email = request.POST.get("email")
+        print(email)
+        customer = Customer.objects.get(user__email__iexact=email)
+        user = customer.user
+        mail_subject = "Password reset for EZBOOKS account"
+        mail_body = render_to_string('authenticate/passwordResetMail.html', {
+            "user": user,
+            'domain': get_current_site(request).domain,
+            'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+            'token': account_activation_token.make_token(user),
+        })
+        to_email = email
+        sentEmail = EmailMessage(mail_subject, mail_body, to=[to_email])
+        sentEmail.content_subtype = 'html'
+        sentEmail.send()
+        return render(request, "authenticate/passwordResetDone.html")
+
+def password_change(request, uidb64, token):
+    try:
+        uid = force_text(urlsafe_base64_decode(uidb64)) 
+        user = User.objects.get(pk=uid)
+    except(TypeError, ValueError, User.DoesNotExist, OverflowError):
+        user = None
+    if user is not None and account_activation_token.check_token(user, token):
+        if request.method == "POST":
+            form = SetPasswordForm(user, request.POST)
+            if form.is_valid():
+                form.save()
+                return render(request, "authenticate/passwordDone.html")
+            else:
+                return render(request, "authenticate/passwordChange.html", {
+                "form": form,
+                "uidb64": uidb64,
+                "token": token
+                })  
+        else: 
+            return render(request, "authenticate/passwordChange.html", {
+        "form": SetPasswordForm(user),
+        "uidb64": uidb64,
+        "token": token
+        })           

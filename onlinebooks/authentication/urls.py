@@ -11,4 +11,6 @@ urlpatterns = [
     path('logout', views.logout, name='logout'),
     path('ajax/', views.checkEmail, name='checkEmail'),
     path('activate/<str:uidb64>/<str:token>', views.activate, name='activate'),
+    path('password/reset', views.password_reset, name='passwordReset'),
+    path('password/change/<str:uidb64>/<str:token>', views.password_change, name='passwordChange'),
 ]
