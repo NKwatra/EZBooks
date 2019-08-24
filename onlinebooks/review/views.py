@@ -6,7 +6,7 @@ from .models import Review
 
 def addReview(request, book_id):
     if not (request.user.is_authenticated):
-        return redirect(reverse('authenticate:authenticate'))
+        return redirect("{}?next={}".format(reverse('authenticate:authenticate'), reverse('review:addReview', kwargs={"book_id": book_id})))
     customer = Customer.objects.get(user__id=request.user.id)
     book = Book.objects.get(pk=book_id)
     message=""

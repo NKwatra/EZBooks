@@ -5,6 +5,7 @@ from django.db.models import Q
 from django.http import HttpResponse, JsonResponse
 import json
 from user.models import Customer
+from django.contrib.auth.decorators import login_required
 
 def category(request, category):
     all_books = Book.objects.filter(category__iexact=category).order_by('avg_rating').reverse()
@@ -27,6 +28,7 @@ def detail(request, book_id):
        wishlisted = True
    return render(request, "book/detail.html", {'book': book, 'reviews': reviews, 'wishlisted': wishlisted})
 
+@login_required(login_url='authenticate:authenticate')
 def wishlist(request):
     book_id = request.GET['bookId']
     current_customer = Customer.objects.get(user__id=request.user.id)

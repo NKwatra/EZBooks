@@ -16,7 +16,8 @@ import re
 
 def auth(request):
     form = SignUpForm()
-    return render(request, 'authenticate/auth.html', {'form': form})
+    next = request.GET.get("next")
+    return render(request, 'authenticate/auth.html', {'form': form, "next": next})
 
 def sign_up(request):
     form = SignUpForm(request.POST)
@@ -52,13 +53,14 @@ def login(request):
     email = request.POST['email']
     password = request.POST['password']
     user = authenticate(request, username=email, password=password)
+    next = request.GET.get("next")
     if user is not None:
         sign_in(request, user)
-        return redirect(reverse('authenticate:authenticate'))
+        return redirect(next)
     else :
         error_message = 'Incorrect username or password'
         return render(request, 'authenticate/auth.html', {'error': error_message, 'form': SignUpForm(),
-         'active_tab': 'login' })
+         'active_tab': 'login', "next": next })
 
 def logout(request):
     sign_out(request)

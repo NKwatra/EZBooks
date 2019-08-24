@@ -13,7 +13,8 @@ from django.contrib.auth.forms import PasswordChangeForm
 def profile(request, user_id):
     customer = get_object_or_404(Customer, user__id=user_id)
     return render(request, 'user/profile.html', {'customer': customer})
-
+    
+@login_required(login_url='authenticate:authenticate')
 def ajaxUpdate(request, user_id):
     customer = get_object_or_404(Customer, user__id = user_id)
     key = request.POST.getlist('attribute[]')

@@ -28,7 +28,7 @@
                               Welcome {{user.first_name}}
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                              <a class="dropdown-item" href="/accounts/profile/{{user.id}}">My Profile</a>
+                              <a class="dropdown-item" href="{% url 'user:profile' user.id %}">My Profile</a>
                               <hr>
                               <a class="dropdown-item" href="{% url 'user:wishlist' %}">My Wishlist</a>
                               <hr>
@@ -37,7 +37,7 @@
                           </li>
                     {% else %}
                         <li class="nav-item">
-                            <a class="nav-link " href="{% url 'authenticate:authenticate' %}">Login & Signup</a>
+                            <a class="nav-link " href="{% url 'authenticate:authenticate' %}?next={{request.path}}">Login & Signup</a>
                           </li>
                     {% endif %}
                   </ul>

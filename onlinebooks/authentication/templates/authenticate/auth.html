@@ -94,7 +94,7 @@
           </button>
         </div>
       {% endif %}
-      <form method="POST" action="{% url 'authenticate:login' %}" class="pane-top">
+      <form method="POST" action="{% url 'authenticate:login' %}?next={{next}}" class="pane-top">
         {% csrf_token %}
         <div class="form-group">
           <input type="email" id="email" name="email" class="form-control" placeholder="Email address">
