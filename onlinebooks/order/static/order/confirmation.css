@@ -1,0 +1,60 @@
+.container{
+    width: 90%;
+    color: black !important;
+}
+
+.logo-container{
+    text-align: center;
+}
+
+.logo{
+    height: 100px;
+    width: auto;
+    max-width: 150px;
+}
+
+.top-mg{
+    margin-top: 30px;
+}
+.btn{
+    display: block;
+    width: 180px;
+    text-align: center;
+    text-transform: uppercase;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    margin-left: auto;
+    margin-right: auto;
+    text-decoration: none;
+    margin-top: 30px;
+}
+
+.flex-box{
+    display: flex;
+    justify-content: space-between;
+}
+
+.col-3{
+    width: 33%;
+}
+
+.col-9{
+    width: 66%;
+}
+
+.book-img{
+    height: 15vh;
+    width: auto;
+    max-width: 100%;
+}
+
+.left-pd{
+    padding-left: 10px;
+}
+.text-muted{
+    color: #6c757d!important;
+}
+p{
+    margin-top: 15px;
+}

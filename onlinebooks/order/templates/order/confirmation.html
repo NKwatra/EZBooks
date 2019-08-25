@@ -1,0 +1,28 @@
+{% load inlinecss %}
+{% load staticfiles %}
+{% load Cache %}
+{% autoescape off %}
+{% inlinecss "order/confirmation.css" %}
+    <div class="container">
+        <div class="logo-container">
+            <img class="logo" src="{% static 'CompanyIcon.jpg' %}" alt="Company logo">
+        </div>
+        <p>Hi {{customer.user.first_name}},</p>
+        <p class="top-mg">Your order has been successfully placed and will be delivered by {{order.date_of_purchase|plus_days:2|date:"D, d F, Y"}}
+            Thanks for shopping with EZBOOKS!.
+            <a class="btn" href="http://{{domain}}{% url 'user:myOrders' customer.user.id %}">Manage your order</a>
+        </p>
+        <p class="top-mg">
+            <div class="flex-box">
+                <div class="col-3">
+                    <img src="{{book.cover_image.url}}" alt="image of {{book.title}}" class="book-img">
+                </div>
+                <div class="col-9">
+                    <p>{{book.title}}</p>
+                    <p class="text-muted left-pd">By {{book.author}}</p>
+                </div>
+            </div>
+        </p>
+    </div>
+{% endinlinecss %}
+{% endautoescape %}
