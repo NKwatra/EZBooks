@@ -56,5 +56,9 @@
     color: #6c757d!important;
 }
 p{
-    margin-top: 15px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-top: 0;
+    padding-bottom: 0;
+
 }

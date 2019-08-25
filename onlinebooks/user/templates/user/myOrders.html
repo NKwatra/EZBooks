@@ -9,13 +9,13 @@
 {% block content %}
     <div class="container">
             <div class="row white-background">
-                    <div class="col-12 text-center text-uppercase p-4 large-font" id="wishlist-count">
+                    <div class="col-12 text-center text-uppercase p-4 large-font" id="orders-count">
                         my orders ({{orders|length}})
                     </div>
             </div>
             
             {% for order in orders %}
-                <div class="row white-background border-top">
+                <div class="row white-background border-top order-container">
                     <div class="col-3 text-center align-self-center">
                         <img src={{order.book.cover_image.url}} alt="image of {{order.book.title}}" class="book-img">
                     </div>
@@ -55,12 +55,26 @@
                     
                     {% if order.allow_cancel %}
                     <div class="col-3 text-right pt-3">
-                            <button class="btn btn-outline-secondary text-uppercase">cancel</button>
+                            <button class="btn btn-outline-secondary text-uppercase cancel-btn" data-id={{order.id}}>cancel</button>
                         </div>
                     {% endif %}
                 </div>
             {% endfor %}
-                            
+            <div class="row">
+                    <div class="col-12 col-lg-4 offset-lg-4">
+                        <div class="alert alert-dismissible fade show" role="alert" id="removed-alert">
+                            <i class="fas fa-check-circle mr-4 text-success"></i>Order Cancelled
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>                
     </div>      
 {% endblock content %}
+
+{% block scripts %}
+    <script src="{% static 'user/cancelOrder.js' %}?{% cache_bust %}"></script>
+{% endblock scripts %}
+    
     

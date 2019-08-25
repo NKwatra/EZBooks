@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect,reverse
 from django.contrib.auth.decorators import login_required
 from book.models import Book
 from user.models import Customer
+from django.http import JsonResponse
 from .models import Order
 from django.template.loader import render_to_string
 from django.contrib.sites.shortcuts import get_current_site
@@ -30,3 +31,11 @@ def placeOrder(request, book_id, type):
     email.content_subtype = "html"
     email.send()
     return redirect(reverse('user:myOrders', kwargs={"user_id": customer.user.id})) 
+
+@login_required(login_url='authenticate:authenticate')
+def cancelOrder(request, order_id):
+    current_order = Order.objects.get(pk=order_id)
+    current_order.user.orders.remove(current_order.book)
+    current_order.delete()
+    return JsonResponse({"deleted": True})
+
