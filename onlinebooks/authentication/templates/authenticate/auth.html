@@ -1,5 +1,6 @@
-{% extends 'base.html' %} {% load staticfiles %} {% block stylesheets %}
-<link rel="stylesheet" type="text/css" href="{% static 'authentication/authenticate.css' %}"> {% endblock stylesheets %}
+{% extends 'base.html' %} {% load staticfiles %}
+{% load Cache %} {% block stylesheets %}
+<link rel="stylesheet" type="text/css" href="{% static 'authentication/authenticate.css' %}?{% cache_bust %}"> {% endblock stylesheets %}
 {% block content %}
 <div class="custom-container">
   <nav>
@@ -115,5 +116,5 @@
 {% endblock content %}
 
 {% block scripts %}
-  <script src="{% static 'authentication/formValidation.js' %}"></script>
+  <script src="{% static 'authentication/formValidation.js' %}?{% cache_bust %}"></script>
 {% endblock scripts %}

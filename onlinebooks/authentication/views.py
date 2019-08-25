@@ -81,7 +81,7 @@ def activate(request, uidb64, token):
         return HttpResponse("This link is no longer valid, please sign up again")    
 
 def checkEmail(request):
-    email_id = request.GET["email"]
+    email_id = request.GET.get("email")
     try:
         user = User.objects.get(email__iexact=email_id)
         return JsonResponse({"exists": True})

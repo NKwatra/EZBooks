@@ -6,7 +6,7 @@ $("#id_email").change(function () {
         $(this).parent().append(emailAlert);
         return;
     }
-    checkAvailableEmail();
+    checkAvailableEmail(email);
 });
 
 $('#id_email').on("input focus", function () {
@@ -66,13 +66,14 @@ $("#signUpForm").submit(function(e){
 })
 
 function checkAvailableEmail(email){
+    var returnValue = true;
     $.get("/authenticate/ajax/", { 'email': email })
         .done(function (data) {
             if (data["exists"]) {
                 let emailRegisteredAlert = '<span class="text-danger" id="email-exists-message">The email address is already registered with us</span>';
                 $("#id_email").parent().append(emailRegisteredAlert);
-                return false;
+                returnValue = false;
             }
-            return true;
-        })
+        });
+    return returnValue;    
 }
