@@ -17,6 +17,8 @@ def newOrder(request, book_id, order_type):
 @login_required(login_url='authenticate:authenticate')
 def placeOrder(request, book_id, type):
     book = Book.objects.get(pk=book_id)
+    book.stock -= 1
+    book.save()
     customer = Customer.objects.get(user__id=request.user.id)
     current_order = Order.objects.create(book=book, user=customer, order_type=type) 
     mail_subject = "Order Confirmation- Your order with EZBOOKS has been successfully placed"
@@ -35,6 +37,8 @@ def placeOrder(request, book_id, type):
 @login_required(login_url='authenticate:authenticate')
 def cancelOrder(request, order_id):
     current_order = Order.objects.get(pk=order_id)
+    current_order.book.stock += 1
+    current_order.book.save()
     current_order.user.orders.remove(current_order.book)
     current_order.delete()
     return JsonResponse({"deleted": True})
