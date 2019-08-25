@@ -12,11 +12,11 @@
             <img src="{{book.cover_image.url}}" alt="cover image of {{book.title}}" class="display_image">
             <div class="row mt-lg-5" id="actions-container">
                 <div class="col-6 small-screen-zero-padding">
-                    <a class="btn btn-warning btn-lg text-uppercase action-button"> 
+                    <a class="btn btn-warning btn-lg text-uppercase action-button" href="{% url 'order:newOrder' book_id=book.id order_type=1 %}"> 
                             <i class="far fa-credit-card mr-2"></i>rent it</a>
                 </div>
                 <div class="col-6 small-screen-zero-padding">
-                    <a class="btn btn-success btn-lg text-uppercase action-button">
+                    <a class="btn btn-success btn-lg text-uppercase action-button" href="{% url 'order:newOrder' book_id=book.id order_type=2 %}">
                             <i class="fas fa-bolt mr-2"></i>buy now</a>
                 </div>
             </div>

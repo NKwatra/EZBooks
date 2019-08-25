@@ -25,8 +25,8 @@ $('document').ready(function () {
     }
 
     $("#wishlist-icon").click(function () {
+        var currPathSegments = window.location.pathname.split("/");
         if ($('#navbarDropdownMenuLink').length) {
-            var currPathSegments = window.location.pathname.split("/");
             $(this).toggleClass("fas far");
             $.get("/books/ajax/wishlist", 
             {
@@ -41,7 +41,7 @@ $('document').ready(function () {
         } else {
             showModal("Please login to add this book to wishlist");
             $("#loginModal").on('hidden.bs.modal', function () {
-                window.location.replace("/authenticate");
+                window.location.replace(`/authenticate/?next=/books/detail/${currPathSegments[currPathSegments.length - 1]}`);
             });
         }
     });

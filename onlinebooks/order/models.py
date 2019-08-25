@@ -1,7 +1,6 @@
 from django.db import models
 from book.models import Book
 from user.models import Customer
-from django.core.validators import MinValueValidator, MaxValueValidator
 
 class Order(models.Model):
     book = models.ForeignKey(Book, on_delete=models.CASCADE)
@@ -11,7 +10,6 @@ class Order(models.Model):
         (1, "Rent"),
         (2, "Buy"),
     ])
-    days_lended = models.IntegerField(validators=[MinValueValidator(7), MaxValueValidator(21)], blank=True, null=True)
     status = models.IntegerField(choices=[
         (1, "active"),
         (2, "inactive"),

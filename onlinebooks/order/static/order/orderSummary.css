@@ -1,0 +1,42 @@
+.custom-background{
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.large-padding{
+    padding: 40px 20px;
+    max-height: 42vh;
+}
+
+.step-background{
+    background-color: #f0f0f0;
+    color: #2874f0;
+    padding: 5px 5px;
+    max-width: 30px;
+    max-height: 30px;
+    text-align: center;
+}
+
+.book-img{
+    height: 20vh;
+    max-width: 100%;
+}
+
+.custom-font-size{
+    font-size: 1.2rem;
+}
+
+.rating-background {
+    color: white;
+    background-color: #388e3c;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+@media(max-width:800px){
+    .large-padding{
+        margin-top: 20px;
+        max-height: 52vh;
+    }
+}

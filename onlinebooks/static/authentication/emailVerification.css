@@ -12,3 +12,16 @@
     width: auto;
     max-width: 150px;
 }
+
+.btn{
+    display: block;
+    width: 180px;
+    text-align: center;
+    text-transform: uppercase;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    margin-left: auto;
+    margin-right: auto;
+    text-decoration: none;
+}
