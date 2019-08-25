@@ -28,9 +28,11 @@
                               Welcome {{user.first_name}}
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                              <a class="dropdown-item" href="{% url 'user:profile' user.id %}">My Profile</a>
+                              <a class="dropdown-item" href="{% url 'user:profile' user.id %}">My Account</a>
                               <hr>
                               <a class="dropdown-item" href="{% url 'user:wishlist' %}">My Wishlist</a>
+                              <hr>
+                              <a class="dropdown-item" href="{% url 'user:myOrders' request.user.id %}">My Orders</a>
                               <hr>
                               <a class="dropdown-item" href="{% url 'authenticate:logout' %}">Logout</a>
                             </div>

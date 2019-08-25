@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load Cache %}
+
+{% block stylesheets %}
+<link rel="stylesheet" type="text/css" href="{% static 'user/wishlist.css' %}?{% cache_bust %}">
+{% endblock stylesheets %}
+    
+{% block content %}
+    <div class="container">
+            <div class="row white-background">
+                    <div class="col-12 text-center text-uppercase p-4 large-font" id="wishlist-count">
+                        my orders ({{orders|length}})
+                    </div>
+            </div>
+            
+            {% for order in orders %}
+                <div class="row white-background border-top">
+                    <div class="col-3 text-center align-self-center">
+                        <img src={{order.book.cover_image.url}} alt="image of {{order.book.title}}" class="book-img">
+                    </div>
+                    <div class="col-6 pt-3 pb-3">
+                        <div class="row">
+                            <div class="col-6 text-muted text-uppercase">item</div>
+                            <div class="col-6">{{order.book.title}}</div>
+                        </div>
+                        <div class="row mt-1">
+                                <div class="col-6 text-muted text-uppercase">order id</div>
+                                <div class="col-6">{{order.id}}</div>
+                        </div>
+                        <div class="row mt-1">
+                                <div class="col-6 text-muted text-uppercase">date of purchase</div>
+                                <div class="col-6">{{order.date_of_purchase|date:"D, d F, Y"}}</div>
+                        </div>
+                        
+                        {% if order.order_type == 1 %}
+                        <div class="row mt-1">
+                                <div class="col-6 text-muted text-uppercase">date of return</div>
+                                <div class="col-6">{{order.date_of_purchase|plus_days:9|date:"D, d F, Y"}}</div>
+                        </div> 
+                        {% endif %}
+                            
+                        <div class="row">
+                                <div class="col-6 text-muted text-uppercase">status</div>
+                                <div class="col-6 text-success">
+                                    
+                                    {% if order.status == 2 %}
+                                        Delivered
+                                    {% else %}
+                                        Delivery by {{order.date_of_purchase|plus_days:2|date:"D, d F, Y"}}    
+                                    {% endif %}
+                                        </div>
+                        </div>
+                    </div>
+                    
+                    {% if order.allow_cancel %}
+                    <div class="col-3 text-right pt-3">
+                            <button class="btn btn-outline-secondary text-uppercase">cancel</button>
+                        </div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+                            
+    </div>      
+{% endblock content %}
+    

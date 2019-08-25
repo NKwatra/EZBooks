@@ -25,6 +25,12 @@
     width: auto;
 }
 
+.book-img{
+    height: 20vh;
+    max-width: 100%;
+    width: auto;
+}
+
 .cursor-pointer{
     cursor: pointer;
 }

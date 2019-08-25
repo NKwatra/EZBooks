@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Customer
 from book.models import Book
+from order.models import Order
 from django.urls import reverse
 from django.http import JsonResponse
 from django.contrib.auth import update_session_auth_hash
@@ -52,3 +53,8 @@ def remove_wishlist(request):
     customer = Customer.objects.get(user__id=request.user.id)   
     customer.wishlist.remove(book)
     return JsonResponse({"removed": True})
+
+@login_required(login_url="authenticate:authenticate")
+def myOrders(request, user_id):
+    orders = Order.objects.filter(user__user__id=user_id).order_by('status')
+    return render(request, 'user/myOrders.html', {'orders': orders})

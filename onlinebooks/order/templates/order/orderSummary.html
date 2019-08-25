@@ -1,5 +1,6 @@
 {% extends 'base.html' %} {% load staticfiles %} {% load Cache %} {% block stylesheets %}
-<link href="{% static 'order/orderSummary.css' %}?{% cache_bust %}" type="text/css" rel="stylesheet"> {% endblock stylesheets%} {% block content %}
+<link href="{% static 'order/orderSummary.css' %}?{% cache_bust %}" type="text/css" rel="stylesheet"> {% endblock stylesheets%}
+{% block content %}
 <div class="container pb-3">
     <div class="row pt-3">
         <div class="col-12 col-lg-7">
@@ -56,7 +57,9 @@
             <hr>
             <div class="row">
                 <div class="col-6">Price</div>
-                <div class="col-6"> ₹ {{book.price}}</div>
+                <div class="col-6">
+
+                    {% if type == 1 %} ₹ {{book.price|divide:2}} {% else %} ₹ {{book.price}}{% endif %}</div>
             </div>
             <div class="row mt-3">
                 <div class="col-6">Delivery Charges</div>
@@ -82,7 +85,15 @@
                 <a class="btn btn-primary btn-block text-uppercase" href="{% url 'order:placeOrder' book_id=book.id type=type%}">confirm</a>
             </div>
         </div>
-
     </div>
+    
+    {% if type == 1 %}
+            
+    <div class="col-12 text-info custom-background mt-3">
+            NOTE : Since the book is rented, it is available at half the original price.The customer is solely reponsible
+            for returing the book in the same state as it was delivered, if the book is found to be torn or damaged in anyway
+            the customer shall be liable to pay full cost of book. Minute wear and tear beacuse of reading is acceptable.
+    </div>  
+    {% endif %}
 </div>
 {% endblock content %}

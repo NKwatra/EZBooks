@@ -9,4 +9,5 @@ urlpatterns = [
     path('password/change', views.password_change, name='password_change'),
     path('wishlist', views.wishlist, name='wishlist'),
     path('wishlist/remove', views.remove_wishlist, name='removeWishlist'),
+    path('orders/<int:user_id>', views.myOrders, name='myOrders'),
 ]
