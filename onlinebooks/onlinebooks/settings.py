@@ -17,7 +17,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 def configureProj():
-    with open('../info.txt') as f:
+    PARENT_DIR = os.path.abspath(os.path.join(BASE_DIR, os.pardir))
+    with open(os.path.join(PARENT_DIR, "info.txt")) as f:
         return f.read().split(" ")
 
 info = configureProj()
