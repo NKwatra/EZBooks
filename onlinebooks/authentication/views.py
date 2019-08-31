@@ -93,21 +93,24 @@ def password_reset(request):
         return render(request, "authenticate/password_reset.html")
     else:
         email = request.POST.get("email")
-        print(email)
-        customer = Customer.objects.get(user__email__iexact=email)
-        user = customer.user
-        mail_subject = "Password reset for EZBOOKS account"
-        mail_body = render_to_string('authenticate/passwordResetMail.html', {
-            "user": user,
-            'domain': get_current_site(request).domain,
-            'uid': urlsafe_base64_encode(force_bytes(user.pk)),
-            'token': account_activation_token.make_token(user),
-        })
-        to_email = email
-        sentEmail = EmailMessage(mail_subject, mail_body, to=[to_email])
-        sentEmail.content_subtype = 'html'
-        sentEmail.send()
-        return render(request, "authenticate/passwordResetDone.html")
+        try:
+            customer = Customer.objects.get(user__email__iexact=email)
+        except Customer.DoesNotExist:
+                return render(request, "authenticate/password_reset.html", {"message": "The entered email is not registred with us"}) 
+        if customer is not None:
+            user = customer.user
+            mail_subject = "Password reset for EZBOOKS account"
+            mail_body = render_to_string('authenticate/passwordResetMail.html', {
+                "user": user,
+                'domain': get_current_site(request).domain,
+                'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+                'token': account_activation_token.make_token(user),
+            })
+            to_email = email
+            sentEmail = EmailMessage(mail_subject, mail_body, to=[to_email])
+            sentEmail.content_subtype = 'html'
+            sentEmail.send()
+            return render(request, "authenticate/passwordResetDone.html")
 
 def password_change(request, uidb64, token):
     try:
