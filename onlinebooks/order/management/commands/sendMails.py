@@ -8,7 +8,10 @@ class Command(BaseCommand):
     def handle(self, *args, **kwargs):
         rentedOrders = Order.objects.filter(order_type=1)
         for order in rentedOrders:
-            if timezone.now() - order.date_of_purchase >= timezone.timedelta(days=7):
+            if order.status == 1 and timezone.now() - order.date_of_purchase > timezone.timedelta(days=2):
+                order.status = 2
+                order.save()
+            if timezone.now() - order.date_of_purchase >= timezone.timedelta(days=7) and timezone.now() - order.date_of_purchase < timezone.timedelta(days=10):
                 mail_subject = "Return of book rented via EZBOOKS"
                 to_email = order.user.user.email
                 mail_body = render_to_string('order/returnReminder.html', { "order": order})
