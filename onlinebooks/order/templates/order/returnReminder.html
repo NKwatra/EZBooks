@@ -1,0 +1,15 @@
+{% autoescape off %}
+{% load Cache %}
+   <div style="width:80%; min-width:400px;">
+    <span> Hi {{order.user.user.first_name}},</span><br>
+    <p style="padding-left: 10px; padding-right: 10px;">
+        This is just a reminder that you have to return {{order.book.title}} rented via EZBOOKS on {{order.date_of_purchase|plus_days:9|date:"D, d F, Y"}}.
+        Our personnel will come to collect the book on {{order.date_of_purchase|plus_days:9|date:"D, d F, Y"}} at 6:00 pm. Please
+        ensure that you have the book ready by then.
+    </p>
+    <p>
+        Regards,<br>
+        Team EZBOOKS
+    </p>
+   </div>
+{% endautoescape %}

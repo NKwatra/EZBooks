@@ -75,8 +75,18 @@
             <div class="row mt-3 font-weight-bold">
                 <div class="col-6">Total Payable</div>
                 <div class="col-6">
-
-                    {% if book.price > 500 %} ₹ {{book.price}} {% else %} ₹ {{book.price|add:"30"}} {% endif %}
+                    
+                    {% if type == 1 %}
+                        {% if book.price|divide:2 > 500 %} 
+                            ₹ {{book.price|divide:2}} 
+                        {% else %} ₹ {{book.price|divide:2|add:"30"}} 
+                        {% endif %}
+                    {% else %}        
+                        {% if book.price > 500 %} 
+                            ₹ {{book.price}} 
+                        {% else %} ₹ {{book.price|add:"30"}} 
+                        {% endif %}
+                    {% endif %}    
 
                 </div>
             </div>
