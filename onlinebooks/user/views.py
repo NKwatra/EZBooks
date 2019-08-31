@@ -34,8 +34,6 @@ def password_change(request):
             user = form.save()
             update_session_auth_hash(request, user)
             return redirect(reverse("user:profile", kwargs={'user_id': request.user.id}))
-        else:
-            pass 
     else:
         form = PasswordChangeForm(request.user)
     return render(request, "user/password_change.html", {'form': form})  

@@ -19,7 +19,7 @@ $('document').ready(
                                             <p class="text-muted pl-3 small my-0">By ${data[i].author}</p>
                                             <div class="my-0 d-flex justify-content-around">
                                                 <div class="my-0 text-center rating-background">
-                                                    ${data[i].avg_rating}&nbsp;<i class="fas fa-star"></i>
+                                                    ${data[i].avg_rating.toFixed(1)}&nbsp;<i class="fas fa-star"></i>
                                                 </div>
                                                  <p class="my-0 font-weight-bold">₹${ data[i].price}</p>
                                             </div>

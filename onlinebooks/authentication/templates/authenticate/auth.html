@@ -58,7 +58,7 @@
           </div>
           <ul>
             {% for error in form.password2.errors %}
-            <li class="text-danger">{{error}}</li>
+            <li class="text-danger no-bullet">{{error}}</li>
             {% endfor %}
           </ul>
         </div>
@@ -74,8 +74,9 @@
           <div class="col-md-9 col-sm-8 mb-4 mb-md-0">
             {{form.mobile_no.as_widget.1}}
           </div>
+          <ul>
           {% for error in form.mobile_no.errors %}
-          <li class="text-danger">{{error}}</li>
+          <li class="text-danger no-bullet">{{error}}</li>
           {% endfor %}
           </ul>
         </div>
