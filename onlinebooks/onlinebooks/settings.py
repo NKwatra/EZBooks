@@ -15,24 +15,16 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
-def configureProj():
-    PARENT_DIR = os.path.abspath(os.path.join(BASE_DIR, os.pardir))
-    with open(os.path.join(PARENT_DIR, "info.txt")) as f:
-        return f.read().split(" ")
-
-info = configureProj()
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = info[0]
+SECRET_KEY = os.environ['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1','.herokuapp.com']
 
 
 # Application definition
@@ -55,6 +47,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -92,11 +85,11 @@ WSGI_APPLICATION = 'onlinebooks.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME' : info[1],
-        'USERNAME' : info[2],
-        'PASSWORD' : info[3],
+        'NAME' : os.environ["DATABASE_NAME"],
+        'USERNAME' : os.environ["DATABASE_USER"],
+        'PASSWORD' : '',
         'HOST': 'localhost',
-        'PORT': info[4],
+        'PORT': '',
     }
 }
 
@@ -143,6 +136,8 @@ STATIC_URL = '/static/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, "static/")
 
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 # Media files configuration
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "media/")
@@ -154,5 +149,17 @@ MEDIA_URL = "/media/"
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.sendgrid.net'
 EMAIL_HOST_USER = 'apikey'
-EMAIL_HOST_PASSWORD = info[3]
+EMAIL_HOST_PASSWORD = os.environ["EMAIL_PASSWORD"]
 EMAIL_PORT = 587
+
+import dj_database_url
+
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(db_from_env)
+
+try:
+    from . import  local_settings
+    DEBUG = local_settings.DEBUG
+    DATABASES = local_settings.DATABASES
+except Exception as e:
+    pass    
